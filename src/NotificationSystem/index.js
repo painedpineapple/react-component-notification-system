@@ -5,6 +5,8 @@ export const { Provider, Consumer } = React.createContext([])
 
 type tProps = {
   children: any => any,
+  autoDismiss?: boolean,
+  defaultDismissTimeout?: number,
 }
 
 type tState = {
@@ -20,6 +22,15 @@ export default class NotificationSystem extends React.Component<
 > {
   state = {
     notifications: [],
+  }
+  autoDismiss = true
+  defaultDismissTimeout = 10000
+  constructor(props: tProps) {
+    super(props)
+
+    if (this.props.autoDismiss === false) this.autoDismiss = false
+    this.defaultDismissTimeout =
+      this.props.defaultDismissTimeout || this.defaultDismissTimeout
   }
   setNotification = notification => {
     if (!notification.dismiss)
@@ -37,6 +48,18 @@ export default class NotificationSystem extends React.Component<
         notifications: prevState.notifications,
       }
     })
+
+    if (this.autoDismiss && !notification.dismissTimeout) {
+      setTimeout(() => {
+        this.removeNotification(notification.id)
+      }, this.defaultDismissTimeout)
+    }
+
+    if (notification.dismissTimeout) {
+      setTimeout(() => {
+        this.removeNotification(notification.id)
+      }, notification.dismissTimeout)
+    }
   }
   removeNotification = id => {
     this.setState(prevState => ({

@@ -11,7 +11,10 @@ import Notification from './Notification'
 class App extends React.Component {
   render() {
     return (
-      <NotificationSystem>
+      <NotificationSystem
+      //         defaultDismissTimeout={500}
+      //                 autoDismiss={false}
+      >
         {({ clearNotifications, setNotification, removeNotification }) => {
           return (
             <div>
@@ -28,6 +31,7 @@ class App extends React.Component {
                       message: faker.random.word(),
                       id: faker.random.uuid(),
                       dismiss: removeNotification,
+                      //                       dismissTimeout: 3000,
                     })
                   }
                 >

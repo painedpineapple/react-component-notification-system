@@ -11,15 +11,10 @@ type tProps = {
   },
 }
 
-type tState = {}
-
-class NotificationBar extends React.Component<
-  {
-    ...tProps,
-    notifications: [],
-  },
-  tState,
-> {
+class NotificationBar extends React.Component<{
+  ...tProps,
+  notifications: [],
+}> {
   render() {
     const { options: { notification, ...options }, ...attrs } = this.props
     const Notification = notification
