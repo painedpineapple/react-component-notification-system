@@ -21,7 +21,6 @@ class NotificationBar extends React.Component<
   tState,
 > {
   render() {
-    console.log('notifications in bar', this.props.notifications)
     const { options, ...attrs } = this.props
     return (
       <Container
@@ -41,13 +40,12 @@ class NotificationBar extends React.Component<
           {this.props.notifications.map(item => styles => (
             <animated.li style={styles}>
               <Notification
-              //                 message={item.message}
-              //                 status={item.status}
-              //                 title={item.title}
-              //                 dismiss={() => this.dismiss(item.key)}
-              >
-                {item.message}
-              </Notification>
+                message={item.message}
+                key={item.id}
+                //                 status={item.status}
+                //                 title={item.title}
+                //                 dismiss={() => this.dismiss(item.key)}
+              />
             </animated.li>
           ))}
         </Transition>
@@ -60,7 +58,6 @@ export default function RenderNotificationBar(props: tProps) {
   return (
     <Consumer>
       {notifications => {
-        console.log('notifications in render notif. bar', notifications)
         return <NotificationBar {...props} notifications={notifications} />
       }}
     </Consumer>

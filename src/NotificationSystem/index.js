@@ -23,14 +23,19 @@ export default class NotificationSystem extends React.Component<
     notifications: [],
   }
   setNotification = notification => {
-    console.log('setting notification', notification)
     this.setState(prevState => {
-      notifications: prevState.notifications.push(notification)
+      prevState.notifications.push(notification)
+
+      return {
+        ...prevState,
+        notifications: prevState.notifications,
+      }
     })
   }
   removeNotification = () => {}
   clearNotifications = () => {}
   render() {
+    console.log(this.state.notifications)
     return (
       <Provider value={this.state.notifications}>
         {this.props.children({
