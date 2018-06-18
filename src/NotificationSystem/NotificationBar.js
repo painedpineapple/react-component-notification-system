@@ -27,13 +27,11 @@ class NotificationBar extends React.Component<tProps> {
     super(props)
 
     if (props.options && props.options.transitions) {
-      console.log('has transition')
       const { from, enter, leave } = props.options.transitions
       if (from) this.transitions.from = from
       if (enter) this.transitions.from = enter
       if (leave) this.transitions.from = leave
     }
-    console.log(this.transitions)
   }
   render() {
     const { options: { notification, ...options }, ...attrs } = this.props

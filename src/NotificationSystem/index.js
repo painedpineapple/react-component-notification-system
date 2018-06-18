@@ -72,7 +72,6 @@ export default class NotificationSystem extends React.Component<
     })
   }
   render() {
-    console.log(this.state.notifications)
     return (
       <Provider value={this.state.notifications}>
         {this.props.children({
