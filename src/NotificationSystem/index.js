@@ -9,11 +9,14 @@ type tProps = {
   defaultDismissTimeout?: number,
 }
 
+type tNotification = {
+  id: string | number,
+  dismiss: (id: string) => any,
+  dismissTimeout?: number,
+}
+
 type tState = {
-  notifications: Array<{
-    id: string | number,
-    dismiss: (id: string) => any,
-  }>,
+  notifications: Array<tNotification>,
 }
 
 export default class NotificationSystem extends React.Component<
@@ -32,7 +35,7 @@ export default class NotificationSystem extends React.Component<
     this.defaultDismissTimeout =
       this.props.defaultDismissTimeout || this.defaultDismissTimeout
   }
-  setNotification = notification => {
+  setNotification = (notification: tNotification) => {
     if (!notification.dismiss)
       console.error(
         'Error! You need to set the "dismiss" prop on each notification. This should have the value of the "removeNotification" function that comes from the NotificationSystem component.',
@@ -61,7 +64,7 @@ export default class NotificationSystem extends React.Component<
       }, notification.dismissTimeout)
     }
   }
-  removeNotification = id => {
+  removeNotification = (id: number | string) => {
     this.setState(prevState => ({
       notifications: prevState.notifications.filter(item => item.id !== id),
     }))

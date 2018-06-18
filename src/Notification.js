@@ -1,12 +1,15 @@
+// @flow
 import React from 'react'
 //
-import { Notification as Container } from './style'
+import Container from './style'
 
-type tProps = {}
+type tProps = {
+  message: string,
+  id: string | number,
+  dismiss: (id: string | number) => any,
+}
 
-type tState = {}
-
-export default class Notification extends React.Component<tProps, tState> {
+export default class Notification extends React.Component<tProps> {
   render() {
     return (
       <Container>
