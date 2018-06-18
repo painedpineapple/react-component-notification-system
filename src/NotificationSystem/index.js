@@ -48,7 +48,12 @@ export default class NotificationSystem extends React.Component<
 
       return {
         ...prevState,
-        notifications: prevState.notifications,
+        notifications: [
+          ...prevState.notifications.filter(
+            item => item.id !== notification.id,
+          ),
+          notification,
+        ],
       }
     })
 
