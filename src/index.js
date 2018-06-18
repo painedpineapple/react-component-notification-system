@@ -22,6 +22,11 @@ class App extends React.Component {
                 options={{
                   styles: customStyles,
                   notification: Notification,
+                  transitions: {
+                    from: { opacity: 1 },
+                    enter: { opacity: 1 },
+                    leave: { opacity: 1 },
+                  },
                 }}
               />
               <div className="btn-wrapper">
