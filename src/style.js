@@ -1,6 +1,9 @@
 import styled from 'react-emotion'
 
-export default {}
+export default {
+  top: '',
+  bottom: 45,
+}
 
 export const P = styled('p')(() => ({
   maxWidth: '800px',

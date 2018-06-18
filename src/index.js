@@ -18,8 +18,8 @@ class App extends React.Component {
               <NotificationBar
                 options={{
                   styles: customStyles,
+                  notification: Notification,
                 }}
-                notification={Notification}
               />
               <div className="btn-wrapper">
                 <button
