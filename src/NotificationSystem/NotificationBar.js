@@ -3,9 +3,9 @@ import { Transition, animated } from 'react-spring'
 //
 import Container from './index.style'
 import { Consumer } from './'
-import Notification from './Notification'
 
 type tProps = {
+  notification: any, // React Component
   options: {
     styles?: {},
   },
@@ -21,7 +21,8 @@ class NotificationBar extends React.Component<
   tState,
 > {
   render() {
-    const { options, ...attrs } = this.props
+    const { options, notification, ...attrs } = this.props
+    const Notification = notification
     return (
       <Container
         {...attrs}
@@ -39,13 +40,7 @@ class NotificationBar extends React.Component<
         >
           {this.props.notifications.map(item => styles => (
             <animated.li style={styles}>
-              <Notification
-                message={item.message}
-                key={item.id}
-                //                 status={item.status}
-                //                 title={item.title}
-                //                 dismiss={() => this.dismiss(item.key)}
-              />
+              <Notification key={item.id} {...item} />
             </animated.li>
           ))}
         </Transition>

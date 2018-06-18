@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 
 export const { Provider, Consumer } = React.createContext([])
@@ -8,9 +9,7 @@ type tProps = {
 
 type tState = {
   notifications: Array<{
-    status: string,
-    title: string,
-    message: string,
+    id: string | number,
     dismiss: (id: string) => any,
   }>,
 }
@@ -23,6 +22,13 @@ export default class NotificationSystem extends React.Component<
     notifications: [],
   }
   setNotification = notification => {
+    if (!notification.dismiss)
+      console.error(
+        'Error! You need to set the "dismiss" prop on each notification. This should have the value of the "removeNotification" function that comes from the NotificationSystem component.',
+      )
+    if (!notification.id)
+      console.error('Error! Each notification needs a unique "id" prop.')
+
     this.setState(prevState => {
       prevState.notifications.push(notification)
 
@@ -32,8 +38,16 @@ export default class NotificationSystem extends React.Component<
       }
     })
   }
-  removeNotification = () => {}
-  clearNotifications = () => {}
+  removeNotification = id => {
+    this.setState(prevState => ({
+      notifications: prevState.notifications.filter(item => item.id !== id),
+    }))
+  }
+  clearNotifications = () => {
+    this.setState({
+      notifications: [],
+    })
+  }
   render() {
     console.log(this.state.notifications)
     return (

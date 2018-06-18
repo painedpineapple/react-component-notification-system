@@ -7,13 +7,10 @@ export default styled('div')(({ options: o }) => ({
 
   li: {
     listStyle: 'none',
+    paddingBottom: 10,
+    width: 200,
+    maxWidth: '100%',
   },
 
   ...o.styles,
-}))
-
-export const Notification = styled('div')(props => ({
-  background: 'rebeccapurple',
-  color: '#fff',
-  padding: 30,
 }))

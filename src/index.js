@@ -6,11 +6,9 @@ import _ from 'lodash'
 import NotificationBar from './NotificationSystem/NotificationBar'
 import NotificationSystem from './NotificationSystem'
 import customStyles, { P } from './style'
+import Notification from './Notification'
 
-class App extends React.Component<{}, { isActive: boolean }> {
-  state = {
-    notifications: [],
-  }
+class App extends React.Component {
   render() {
     return (
       <NotificationSystem>
@@ -21,6 +19,7 @@ class App extends React.Component<{}, { isActive: boolean }> {
                 options={{
                   styles: customStyles,
                 }}
+                notification={Notification}
               />
               <div className="btn-wrapper">
                 <button
@@ -28,10 +27,14 @@ class App extends React.Component<{}, { isActive: boolean }> {
                     setNotification({
                       message: faker.random.word(),
                       id: faker.random.uuid(),
+                      dismiss: removeNotification,
                     })
                   }
                 >
                   Add Notification
+                </button>
+                <button onClick={() => clearNotifications()}>
+                  Clear Notifications
                 </button>
               </div>
               <div style={{ marginTop: 80 }}>
