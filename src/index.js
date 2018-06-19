@@ -35,7 +35,8 @@ class App extends React.Component {
                     setNotification({
                       message: faker.random.word(),
                       id: faker.random.uuid(),
-                      status: "error",
+                      status: "success",
+                      // status: "error",
                       dismiss: removeNotification
                       // dismissTimeout: 3000,
                     })
