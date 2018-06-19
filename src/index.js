@@ -1,19 +1,19 @@
-import React from 'react'
-import { render } from 'react-dom'
-import faker from 'faker'
-import _ from 'lodash'
+import React from "react";
+import { render } from "react-dom";
+import faker from "faker";
+import _ from "lodash";
 //
-import NotificationBar from './NotificationSystem/NotificationBar'
-import NotificationSystem from './NotificationSystem'
-import customStyles, { P } from './style'
-import Notification from './Notification'
+import NotificationBar from "./NotificationSystem/NotificationBar";
+import NotificationSystem from "./NotificationSystem";
+import customStyles, { P } from "./style";
+import Notification from "./components/Notification";
 
 class App extends React.Component {
   render() {
     return (
       <NotificationSystem
-      //         defaultDismissTimeout={500}
-      //                 autoDismiss={false}
+      // defaultDismissTimeout={500}
+      // autoDismiss={false}
       >
         {({ clearNotifications, setNotification, removeNotification }) => {
           return (
@@ -21,12 +21,12 @@ class App extends React.Component {
               <NotificationBar
                 options={{
                   styles: customStyles,
-                  notification: Notification,
-                  transitions: {
-                    from: { opacity: 1 },
-                    enter: { opacity: 1 },
-                    leave: { opacity: 1 },
-                  },
+                  notification: Notification
+                  // transitions: {
+                  //   from: { opacity: 1 },
+                  //   enter: { opacity: 1 },
+                  //   leave: { opacity: 1 }
+                  // }
                 }}
               />
               <div className="btn-wrapper">
@@ -35,8 +35,9 @@ class App extends React.Component {
                     setNotification({
                       message: faker.random.word(),
                       id: faker.random.uuid(),
-                      dismiss: removeNotification,
-                      //                       dismissTimeout: 3000,
+                      status: "error",
+                      dismiss: removeNotification
+                      // dismissTimeout: 3000,
                     })
                   }
                 >
@@ -52,11 +53,11 @@ class App extends React.Component {
                 ))}
               </div>
             </div>
-          )
+          );
         }}
       </NotificationSystem>
-    )
+    );
   }
 }
 
-render(<App />, document.getElementById('root'))
+render(<App />, document.getElementById("root"));
