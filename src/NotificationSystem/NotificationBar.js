@@ -2,7 +2,7 @@ import React from 'react'
 import { Transition, animated } from 'react-spring'
 //
 import Container from './index.style'
-import { Consumer } from './'
+import { NotificationSystem } from './'
 
 type tProps = {
   notification: any, // React Component
@@ -64,10 +64,10 @@ class NotificationBar extends React.Component<tProps> {
 
 export default function RenderNotificationBar(props: tProps) {
   return (
-    <Consumer>
-      {notifications => {
+    <NotificationSystem>
+      {({ notifications }) => {
         return <NotificationBar {...props} notifications={notifications} />
       }}
-    </Consumer>
+    </NotificationSystem>
   )
 }

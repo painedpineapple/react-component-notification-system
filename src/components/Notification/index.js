@@ -1,15 +1,15 @@
 // @flow
-import React from "react";
+import React from 'react'
 //
-import Container from "./index.style";
-import IconClose from "../Icons/icon-close";
+import Container from './index.style'
+import IconClose from '../Icons/icon-close'
 
 type tProps = {
   message: string,
   id: string | number,
   status: string,
-  dismiss: (id: string | number) => any
-};
+  dismiss: (id: string | number) => any,
+}
 
 export default class Notification extends React.Component<tProps> {
   render() {
@@ -21,11 +21,11 @@ export default class Notification extends React.Component<tProps> {
             <IconClose />
           </button>
         </div>
-        {this.props.status === "error" && <div className="title-bar" />}
+        {this.props.status === 'error' && <div className="title-bar" />}
         <div className="content">
           <div>{this.props.message}</div>
         </div>
       </Container>
-    );
+    )
   }
 }
