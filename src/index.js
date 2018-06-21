@@ -4,8 +4,8 @@ import faker from 'faker'
 import _ from 'lodash'
 //
 import NotificationBar from './NotificationSystem/NotificationBar'
-import NotificationSystemManager, {
-  NotificationSystem,
+import NotificationSystem, {
+  NotificationSystemManager,
 } from './NotificationSystem'
 import customStyles, { P } from './style'
 import Notification from './components/Notification'

@@ -2,7 +2,7 @@ import React from 'react'
 import { Transition, animated } from 'react-spring'
 //
 import Container from './index.style'
-import { NotificationSystem } from './'
+import NotificationSystem from './'
 
 type tProps = {
   notification: any, // React Component

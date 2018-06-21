@@ -1,12 +1,14 @@
 // @flow
 import React from 'react'
 
-export const { Provider, Consumer: NotificationSystem } = React.createContext({
+export const { Provider, Consumer } = React.createContext({
   notifications: [],
   setNotification: () => {},
   clearNotifications: () => {},
   removeNotification: () => {},
 })
+
+export default Consumer
 
 type tProps = {
   children: any => any,
@@ -22,12 +24,12 @@ type tNotification = {
 
 type tState = {
   notifications: Array<tNotification>,
+  setNotification: (notification: tNotification) => void,
+  clearNotifications: () => void,
+  removeNotification: (id: number | string) => void,
 }
 
-export default class NotificationSystemManager extends React.Component<
-  tProps,
-  tState,
-> {
+export class NotificationSystemManager extends React.Component<tProps, tState> {
   autoDismiss = true
   defaultDismissTimeout = 10000
   constructor(props: tProps) {
