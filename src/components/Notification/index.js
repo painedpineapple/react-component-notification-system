@@ -15,15 +15,17 @@ export default class Notification extends React.Component<tProps> {
   render() {
     return (
       <Container status={this.props.status}>
-        <div className="title-bar">
-          <div className="title">{this.props.status}!</div>
-          <button onClick={() => this.props.dismiss(this.props.id)}>
-            <IconClose />
-          </button>
-        </div>
-        {this.props.status === 'error' && <div className="title-bar" />}
-        <div className="content">
-          <div>{this.props.message}</div>
+        <div className="wrapper">
+          <div className="title-bar">
+            <div className="title">{this.props.status}!</div>
+            <button onClick={() => this.props.dismiss(this.props.id)}>
+              <IconClose />
+            </button>
+          </div>
+          {this.props.status === 'error' && <div className="title-bar" />}
+          <div className="content">
+            <div>{this.props.message}</div>
+          </div>
         </div>
       </Container>
     )
