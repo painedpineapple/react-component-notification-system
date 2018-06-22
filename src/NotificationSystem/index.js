@@ -51,6 +51,13 @@ export class NotificationSystemManager extends React.Component<tProps, tState> {
       console.error('Error! Each notification needs a unique "id" prop.')
     }
 
+    // First remove any instances of the notification (this way there will be an animation making it visible to the user that the notification changed. It also resets the dismiss timeout)
+    this.setState(prevState => ({
+      notifications: prevState.notifications.filter(
+        item => item.id !== notification.id,
+      ),
+    }))
+
     this.setState(prevState => {
       prevState.notifications.push(notification)
 
