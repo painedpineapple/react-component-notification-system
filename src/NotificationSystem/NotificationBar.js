@@ -34,7 +34,11 @@ class NotificationBar extends React.Component<tProps> {
     }
   }
   render() {
-    const { options: { notification, ...options }, ...attrs } = this.props
+    const {
+      options: { notification, ...options },
+      notifications,
+      ...attrs
+    } = this.props
     const Notification = notification
     return (
       <Container
@@ -46,15 +50,15 @@ class NotificationBar extends React.Component<tProps> {
       >
         <Transition
           native
-          keys={this.props.notifications.map(item => item.id)}
+          keys={notifications.map(item => item.id)}
           from={this.transitions.from}
           enter={this.transitions.enter}
           leave={this.transitions.leave}
         >
           {this.props.notifications.map(item => styles => (
-            <animated.li style={styles}>
+            <animated.div style={styles} className="notification-wrapper">
               <Notification {...item} />
-            </animated.li>
+            </animated.div>
           ))}
         </Transition>
       </Container>

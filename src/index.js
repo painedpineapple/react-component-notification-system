@@ -14,8 +14,8 @@ class App extends React.Component {
   render() {
     return (
       <NotificationSystemManager
-      // defaultDismissTimeout={500}
-      // autoDismiss={false}
+        // defaultDismissTimeout={500}
+        autoDismiss={false}
       >
         <div>
           <NotificationBar

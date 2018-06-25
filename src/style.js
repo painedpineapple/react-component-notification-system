@@ -20,6 +20,8 @@ export const Notification = styled('div')(props => ({
   boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
   position: 'relative',
 
+  '.title': { padding: 0 },
+
   button: {
     color: '#fff',
     position: 'absolute',
