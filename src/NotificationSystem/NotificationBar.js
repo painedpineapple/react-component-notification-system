@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { Transition, animated } from 'react-spring'
 //
 import Container from './index.style'
@@ -14,10 +15,17 @@ type tProps = {
       enter?: {},
       leave?: {},
     },
+    mountStyle?: string,
+    rootId?: string,
+    mountId?: string,
   },
 }
 
 class NotificationBar extends React.Component<tProps> {
+  root: any
+  mount: any
+  rootId: string
+  moundId: string
   transitions = {
     from: { opacity: 0, height: 0 },
     enter: { opacity: 1, height: 'auto' },
@@ -26,11 +34,34 @@ class NotificationBar extends React.Component<tProps> {
   constructor(props: tProps) {
     super(props)
 
-    if (props.options && props.options.transitions) {
-      const { from, enter, leave } = props.options.transitions
+    const options = this.props.options || {}
+
+    if (options && options.transitions) {
+      const { from, enter, leave } = options.transitions
       if (from) this.transitions.from = from
       if (enter) this.transitions.from = enter
       if (leave) this.transitions.from = leave
+    }
+
+    if (typeof document != 'undefined') {
+      this.moundId = options.mountId || 'root-notification-bar'
+      this.root = document.getElementById(options.rootId || 'root')
+      this.mount = document.createElement('div')
+
+      this.mount.style =
+        options && options.mountStyle
+          ? options.mountStyle
+          : 'position: absolute; z-index: 2000; top: 0; right: 0; bottom: 0'
+    }
+  }
+  componentDidMount() {
+    if (typeof document != 'undefined') {
+      document.body.appendChild(this.mount)
+    }
+  }
+  componentWillUnmount() {
+    if (typeof document != 'undefined') {
+      document.body.removeChild(this.mount)
     }
   }
   render() {
@@ -40,7 +71,7 @@ class NotificationBar extends React.Component<tProps> {
       ...attrs
     } = this.props
     const Notification = notification
-    return (
+    return ReactDOM.createPortal(
       <Container
         {...attrs}
         options={{
@@ -61,7 +92,8 @@ class NotificationBar extends React.Component<tProps> {
             </animated.div>
           ))}
         </Transition>
-      </Container>
+      </Container>,
+      this.mount,
     )
   }
 }
