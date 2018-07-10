@@ -71,30 +71,34 @@ class NotificationBar extends React.Component<tProps> {
       ...attrs
     } = this.props
     const Notification = notification
-    return ReactDOM.createPortal(
-      <Container
-        {...attrs}
-        options={{
-          ...options,
-          styles: options ? options.styles || {} : {},
-        }}
-      >
-        <Transition
-          native
-          keys={notifications.map(item => item.id)}
-          from={this.transitions.from}
-          enter={this.transitions.enter}
-          leave={this.transitions.leave}
+
+    if (typeof document !== 'undefined') {
+      return ReactDOM.createPortal(
+        <Container
+          {...attrs}
+          options={{
+            ...options,
+            styles: options ? options.styles || {} : {},
+          }}
         >
-          {this.props.notifications.map(item => styles => (
-            <animated.div style={styles} className="notification-wrapper">
-              <Notification {...item} />
-            </animated.div>
-          ))}
-        </Transition>
-      </Container>,
-      this.mount,
-    )
+          <Transition
+            native
+            keys={notifications.map(item => item.id)}
+            from={this.transitions.from}
+            enter={this.transitions.enter}
+            leave={this.transitions.leave}
+          >
+            {this.props.notifications.map(item => styles => (
+              <animated.div style={styles} className="notification-wrapper">
+                <Notification {...item} />
+              </animated.div>
+            ))}
+          </Transition>
+        </Container>,
+        this.mount,
+      )
+    }
+    return null
   }
 }
 
